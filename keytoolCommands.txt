@@ -1,0 +1,2 @@
+keytool -genkey -alias youssfi -keyalg RSA -keystore youssfi.jks -keysize 2048
+keytool -export -alias youssfi -keystore youssfi.jks -rfc -file publickey.cert
