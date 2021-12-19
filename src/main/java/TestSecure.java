@@ -1,9 +1,9 @@
 import javax.crypto.Cipher;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.cert.Certificate;
+import java.security.cert.CertificateFactory;
 import java.util.Base64;
 
 public class TestSecure {
@@ -16,6 +16,9 @@ public class TestSecure {
         KeyPair keyPair=null;
         if(key instanceof PrivateKey){
             Certificate certificate=keyStore.getCertificate("youssfi");
+            System.out.println("*****************************");
+            System.out.println(certificate.toString());
+            System.out.println("*****************************");
             PublicKey publicKey=certificate.getPublicKey();
             PrivateKey privateKey= (PrivateKey) key;
             System.out.println("Public key ");
@@ -41,6 +44,16 @@ public class TestSecure {
         String decrypted=new String(bytes1, StandardCharsets.UTF_8);
         System.out.println("Decrypted :");
         System.out.println(decrypted);
+        System.out.println("========================================================");
+        CertificateFactory cf = CertificateFactory.getInstance("X.509");
+        FileInputStream fis=new FileInputStream("publickey.cert");
+        Certificate certificate = cf.generateCertificate(fis);
+        PublicKey pk=certificate.getPublicKey();
+        System.out.println("******************* PK ***********************************");
+        System.out.println(Base64.getEncoder().encodeToString(pk.getEncoded()));
+        System.out.println("******************* PK ***********************************");
+        System.out.println("******************* Certificate ********************************");
+        System.out.println(certificate.toString());
 
     }
 }
