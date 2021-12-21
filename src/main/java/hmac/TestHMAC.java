@@ -1,7 +1,8 @@
+package hmac;
+
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
-import java.security.NoSuchAlgorithmException;
 
 public class TestHMAC {
     public static void main(String[] args) throws Exception {
@@ -10,8 +11,8 @@ public class TestHMAC {
         mac.init(secretKeySpec);
         String message="Hello Mohamed";
         byte[] bytes = mac.doFinal(message.getBytes());
-        String encrypted=DatatypeConverter.printHexBinary(bytes);
-        System.out.println(encrypted);
+        String hash=DatatypeConverter.printHexBinary(bytes);
+        System.out.println(hash);
 
     }
 }
